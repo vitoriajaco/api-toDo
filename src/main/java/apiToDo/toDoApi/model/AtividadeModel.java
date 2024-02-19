@@ -1,36 +1,53 @@
 package apiToDo.toDoApi.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 
 
 import apiToDo.toDoApi.enums.Status;
-
 import org.springframework.data.annotation.Id;
 
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 
-public class Atividade {
-
+@Entity
+public class AtividadeModel  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
+
     private String tarefa;
+    @Enumerated
     private Status status;
 
-   private List<Atividade> listaDeAtividades;
+   private List<AtividadeModel> listaDeAtividadeModels;
 
-    public Atividade(Long id, String tarefa, Status status) {
+    public Long getId_id() {
+        return id;
+    }
+
+    public void setId_id(Long id_id) {
+        this.id = id_id;
+    }
+
+    public AtividadeModel(Long id, String tarefa, Status status) {
         this.id = id;
         this.tarefa = tarefa;
         this.status = status;
+    }
+    public AtividadeModel(){
+
     }
 
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getTarefa() {
         return tarefa;
@@ -47,10 +64,4 @@ public class Atividade {
     public void setStatus(Status status) {
         this.status = status;
     }
-
-    public List<Atividade> getListaDeAtividades() {
-        return listaDeAtividades;
-    }
-
-
 }
