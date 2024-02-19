@@ -24,13 +24,6 @@ public class AtividadeModel  implements Serializable {
 
    private List<AtividadeModel> listaDeAtividadeModels;
 
-    public Long getId_id() {
-        return id;
-    }
-
-    public void setId_id(Long id_id) {
-        this.id = id_id;
-    }
 
     public AtividadeModel(Long id, String tarefa, Status status) {
         this.id = id;
