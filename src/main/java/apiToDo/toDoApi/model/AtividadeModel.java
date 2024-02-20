@@ -22,8 +22,6 @@ public class AtividadeModel  implements Serializable {
     @Enumerated
     private Status status;
 
-   private List<AtividadeModel> listaDeAtividadeModels;
-
 
     public AtividadeModel(Long id, String tarefa, Status status) {
         this.id = id;
