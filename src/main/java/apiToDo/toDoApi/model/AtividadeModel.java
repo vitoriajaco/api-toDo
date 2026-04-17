@@ -3,10 +3,9 @@ package apiToDo.toDoApi.model;
 
 
 import apiToDo.toDoApi.enums.Status;
-import org.springframework.data.annotation.Id;
 
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 

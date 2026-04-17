@@ -3,13 +3,12 @@ package apiToDo.toDoApi.controller;
 import apiToDo.toDoApi.model.AtividadeModel;
 import apiToDo.toDoApi.service.AtividadeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 public class AtividadeController {
 
     @Autowired
@@ -36,7 +35,7 @@ public class AtividadeController {
         return atividadeService.alterarAtividade(atividadeModel);
     }
 
-    @DeleteMapping(path = "/DeletarAtividade/{id}")
+    @DeleteMapping(path = "/deletarAtividade/{id}")
     public void deletarAtividade (@PathVariable Long id){
         atividadeService.deletarAtividade(id);
     }
