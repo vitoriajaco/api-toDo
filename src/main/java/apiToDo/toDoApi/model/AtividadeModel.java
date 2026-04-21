@@ -1,14 +1,11 @@
 package apiToDo.toDoApi.model;
 
-
-
 import apiToDo.toDoApi.enums.Status;
-
-
 import jakarta.persistence.*;
-import java.io.Serializable;
-import java.util.List;
+import jakarta.validation.constraints.NotNull;
 
+import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
 public class AtividadeModel  implements Serializable {
@@ -16,8 +13,10 @@ public class AtividadeModel  implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-
+    @NotNull
     private String tarefa;
+    private LocalDate dataCriacao;
+    private LocalDate dataLimite;
     @Enumerated
     private Status status;
 
@@ -53,5 +52,18 @@ public class AtividadeModel  implements Serializable {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public LocalDate getDataCriacao() {
+        return dataCriacao;
+    }
+    public void setDataCriacao(LocalDate dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+    public LocalDate getDataLimite() {
+        return dataLimite;
+    }
+    public void setDataLimite(LocalDate dataLimite) {
+        this.dataLimite = dataLimite;
     }
 }
