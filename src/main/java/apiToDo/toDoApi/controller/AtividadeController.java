@@ -21,13 +21,13 @@ public class AtividadeController {
 
     @GetMapping
     public ResponseEntity<List<AtividadeModel>> listarTodas() {
-        List<AtividadeModel> atividades = atividadeService.mostrarTodasAtividades();
+        List<AtividadeModel> atividades = atividadeService.listarTodas();
         return ResponseEntity.ok(atividades);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<AtividadeModel> buscarPorId(@PathVariable Long id) {
-        Optional<AtividadeModel> atividade = atividadeService.buscarAtividadePorId(id);
+        Optional<AtividadeModel> atividade = atividadeService.buscarPorId(id);
         return atividade.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
@@ -36,28 +36,28 @@ public class AtividadeController {
     public ResponseEntity<AtividadeModel> cadastrar(@RequestBody AtividadeModel atividadeModel) {
         // Garante que toda nova atividade comece com status EM_ABERTO
         atividadeModel.setStatus(Status.EM_ABERTO);
-        AtividadeModel criada = atividadeService.cadastrarAtividade(atividadeModel);
+        AtividadeModel criada = atividadeService.cadastrar(atividadeModel);
         return ResponseEntity.status(HttpStatus.CREATED).body(criada);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<AtividadeModel> alterar(@PathVariable Long id, @RequestBody AtividadeModel atividadeModel) {
-        Optional<AtividadeModel> existente = atividadeService.buscarAtividadePorId(id);
-        if (!existente.isPresent()) {
+        Optional<AtividadeModel> existente = atividadeService.buscarPorId(id);
+        if (existente.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         atividadeModel.setId(id); // Garante que o ID do path seja usado
-        AtividadeModel atualizada = atividadeService.alterarAtividade(atividadeModel);
+        AtividadeModel atualizada = atividadeService.atualizar(atividadeModel);
         return ResponseEntity.ok(atualizada);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        Optional<AtividadeModel> existente = atividadeService.buscarAtividadePorId(id);
-        if (!existente.isPresent()) {
+        Optional<AtividadeModel> existente = atividadeService.buscarPorId(id);
+        if (existente.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        atividadeService.deletarAtividade(id);
+        atividadeService.deletar(id);
         return ResponseEntity.noContent().build();
     }
 }

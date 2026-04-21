@@ -14,22 +14,23 @@ public class AtividadeService {
     @Autowired
     private AtividadeRepository atividadeRepository;
 
-    public List<AtividadeModel> mostrarTodasAtividades(){
+    public List<AtividadeModel> listarTodas() {
         return atividadeRepository.findAll();
     }
-    public Optional<AtividadeModel> buscarAtividadePorId(Long id){
+
+    public Optional<AtividadeModel> buscarPorId(Long id) {
         return atividadeRepository.findById(id);
     }
 
-    public AtividadeModel cadastrarAtividade(AtividadeModel atividadeModel){
-
+    public AtividadeModel cadastrar(AtividadeModel atividadeModel) {
         return atividadeRepository.save(atividadeModel);
     }
 
-    public AtividadeModel alterarAtividade(AtividadeModel atividadeModel){
+    public AtividadeModel atualizar(AtividadeModel atividadeModel) {
         return atividadeRepository.save(atividadeModel);
     }
-    public void deletarAtividade(Long id){
+
+    public void deletar(Long id) {
         atividadeRepository.deleteById(id);
     }
 
